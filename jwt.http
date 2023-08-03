@@ -1,0 +1,17 @@
+GET http://localhost:5000/api/v1/coffee
+###
+
+POST http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "Email": "manh2@gmail.com",
+    "Password": "manh1"
+}
+
+###
+
+GET http://localhost:5000/api/v1/category
+
+###
+
