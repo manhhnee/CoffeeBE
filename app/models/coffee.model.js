@@ -38,7 +38,7 @@ coffee.find = async (data, results) => {
     }
   } else {
     try {
-      const queryCoffee = `SELECT c.*, s.SizeName, cat.CategoryName, cat.Image AS category
+      const queryCoffee = `SELECT c.*, s.SizeName, cat.CategoryName, cat.Image AS CategoryImage
         FROM coffee c
         LEFT JOIN Size s ON c.IDSize = s.ID
         LEFT JOIN Category cat ON c.IDCategory = cat.ID
@@ -46,7 +46,10 @@ coffee.find = async (data, results) => {
 
       const coffee = await dbQueryAsync(queryCoffee, data.id);
       const ratings = await dbQueryAsync(
-        "SELECT * FROM rating WHERE IDCoffee = ?",
+        `SELECT rating.ID, rating.IDAccount, rating.Comment, rating.Star, infor_account.Name, infor_account.Avatar 
+        FROM rating 
+        INNER JOIN infor_account ON rating.IDAccount = infor_account.IDAccount 
+        WHERE rating.IDCoffee = ?`,
         coffee[0].ID
       );
       let stars = 0;
