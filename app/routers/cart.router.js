@@ -1,27 +1,34 @@
 const express = require("express");
 const router = express.Router();
+const cartController = require("../controllers/cart.controller");
 const AuthController = require("../controllers/auth.controller");
-const materialController = require("../controllers/materials.controller");
 
 router.get(
   "/",
   AuthController.verifyToken,
-  AuthController.isAdmin,
-  materialController.show
+  AuthController.isCustomer,
+  cartController.showAll
 );
 
 router.post(
   "/add",
   AuthController.verifyToken,
-  AuthController.isAdmin,
-  materialController.add
+  AuthController.isCustomer,
+  cartController.add
+);
+
+router.put(
+  "/update",
+  AuthController.verifyToken,
+  AuthController.isCustomer,
+  cartController.update
 );
 
 router.delete(
   "/delete/:id",
   AuthController.verifyToken,
-  AuthController.isAdmin,
-  materialController.delete
+  AuthController.isCustomer,
+  cartController.delete
 );
 
 module.exports = router;

@@ -13,12 +13,12 @@ class categoryController {
   }
 
   delete(req, res) {
-    categoryModel.delete(req.query.id, (data) => {
+    categoryModel.delete(req.params.id, (data) => {
       res.json(data);
     });
   }
   update(req, res) {
-    categoryModel.update(req.query.id, req.body, (data) => {
+    categoryModel.update(req.params.id, req.body, (data) => {
       res.json(data);
     });
   }

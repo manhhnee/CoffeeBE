@@ -68,7 +68,7 @@ coffee.find = async (data, results) => {
 coffee.add = async (data, coffeePath, results) => {
   try {
     const insertSql =
-      "INSERT INTO coffee (IDCategory, IDSize, Name, Price, Description, Image) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO orders (IDCategory, IDSize, Name, Price, Description, Image) VALUES (?, ?, ?, ?, ?, ?)";
 
     if (coffeePath === null) {
       await dbQueryAsync(
